@@ -141,7 +141,7 @@
     "env": {
       "production": {
         "plugins": [
-          ["react-remove-properties", {"properties": ["data-test", "data-foo", /my-suffix-expression$/]}]
+          ["react-remove-properties", {"properties": ["data-test"]}]
         ]
       }
     },
