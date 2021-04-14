@@ -1,6 +1,6 @@
-//recieve the success state as a prop
+import PropTypes from 'prop-types'
 
-export default function Component(props) {
+const Congrats = (props) => {
 
   const congratsMessage = props.success 
                           ? <span data-test='congrats-message'>
@@ -14,3 +14,9 @@ export default function Component(props) {
     </div>
   )
 }
+
+Congrats.propTypes = {
+  success: PropTypes.bool.isRequired,
+}
+
+export default Congrats
