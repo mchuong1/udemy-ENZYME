@@ -9,7 +9,7 @@ const Congrats = (props) => {
                           : ''
 
   return (
-    <div data-test="component-congrats">
+    <div data-test="component-congrats" className="alert alert-success">
       { congratsMessage }
     </div>
   )
