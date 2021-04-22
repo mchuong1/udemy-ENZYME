@@ -4,7 +4,7 @@ import { findByTestAttr, checkProp } from '../test/testutil'
 import Input from './Input'
 
 const defaultProps = {
-
+  secretWord: 'party'
 }
 
 const setup = (props={}) => {
@@ -12,6 +12,9 @@ const setup = (props={}) => {
   return shallow(<Input {...setupProps}/>)
 }
 
+test('does not throw warning with expected props', () => {
+  checkProp(Input, defaultProps)
+})
 
 describe('Input Component', () => {
   test('renders without error', () => {
