@@ -5,6 +5,11 @@ const Input = ({ secretWord }) => {
 
   const [currentGuess, setCurrentGuess] = useState("");
 
+  const handleSubmit = (event) => {
+    setCurrentGuess('')
+    event.preventDefault()
+  }
+
   return (
     <div data-test="component-input">
       <form className="form-inline">
@@ -18,7 +23,9 @@ const Input = ({ secretWord }) => {
         />
         <button
           data-test="submit-button"
-          className="btn btn-primary mb-2">
+          className="btn btn-primary mb-2"
+          onClick={handleSubmit}
+          >
           Submit
         </button>
       </form>

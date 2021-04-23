@@ -18,6 +18,14 @@ const setup = (props={}) => {
   return shallow(<Input {...setupProps}/>)
 }
 
+beforeEach(() => {
+  mockSetCurrentGuess.mockClear()
+})
+
+afterEach(() => {
+  
+})
+
 test('does not throw warning with expected props', () => {
   checkProp(Input, defaultProps)
 })
@@ -32,7 +40,6 @@ describe('Input Component', () => {
 
 describe('state controlled input field', () => {
   test('state updates with value of input box upon change', () => {
-
     const wrapper = setup();
     const input = findByTestAttr(wrapper, 'input-box')
     
@@ -40,5 +47,13 @@ describe('state controlled input field', () => {
     input.simulate('change', mockEvent)
 
     expect(mockSetCurrentGuess).toHaveBeenLastCalledWith('train')
+  });
+
+  test('field is cleared upon submit button click', ()=> {
+    const wrapper = setup();
+    const button = findByTestAttr(wrapper, 'submit-button')
+
+    button.simulate('click', { preventDefault() {} })
+    expect(mockSetCurrentGuess).toBeCalledWith('');
   });
 })
