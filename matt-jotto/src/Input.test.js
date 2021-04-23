@@ -3,6 +3,12 @@ import { shallow } from 'enzyme'
 import { findByTestAttr, checkProp } from '../test/testutil'
 import Input from './Input'
 
+const mockSetCurrentGuess = jest.fn();
+jest.mock('react', () => ({
+  ...jest.requireActual('react'),
+  useState: (initalState) => [initalState, mockSetCurrentGuess]
+}));
+
 const defaultProps = {
   secretWord: 'party'
 }
@@ -26,8 +32,6 @@ describe('Input Component', () => {
 
 describe('state controlled input field', () => {
   test('state updates with value of input box upon change', () => {
-    const mockSetCurrentGuess = jest.fn();
-    React.useState = jest.fn(() => ["", mockSetCurrentGuess])
 
     const wrapper = setup();
     const input = findByTestAttr(wrapper, 'input-box')
