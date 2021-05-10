@@ -10,7 +10,8 @@ jest.mock('react', () => ({
 }));
 
 const defaultProps = {
-  secretWord: 'party'
+  secretWord: 'party',
+  success: false
 }
 
 const setup = (props={}) => {
@@ -28,6 +29,43 @@ afterEach(() => {
 
 test('does not throw warning with expected props', () => {
   checkProp(Input, defaultProps)
+})
+
+describe('render', () => {
+  describe('success is true', () => {
+    test('renders without error', () => {
+      const wrapper = setup({success: true})
+      const component = findByTestAttr(wrapper, 'component-input')
+      expect(component.length).toBe(1)
+    })
+    test('input box does not show', () => {
+      const wrapper = setup({success: true})
+      const inputBox = findByTestAttr(wrapper, 'input-box')
+      expect(inputBox.exists()).toBe(false)
+    })
+    test('submit button does not show', () => {
+      const wrapper = setup({success: true})
+      const submitButton = findByTestAttr(wrapper, 'submit-button')
+      expect(submitButton.exists()).toBe(false)
+    })
+  })
+  describe('success is false', () => {
+    test('renders without error', () => {
+      const wrapper = setup()
+      const component = findByTestAttr(wrapper, 'component-input')
+      expect(component.length).toBe(1)
+    })
+    test('input box does show', () => {
+      const wrapper = setup()
+      const inputBox = findByTestAttr(wrapper, 'input-box')
+      expect(inputBox.exists()).toBe(true)
+    })
+    test('submit button does show', () => {
+      const wrapper = setup()
+      const submitButton = findByTestAttr(wrapper, 'submit-button')
+      expect(submitButton.exists()).toBe(true)
+    })
+  })
 })
 
 describe('Input Component', () => {
@@ -56,4 +94,4 @@ describe('state controlled input field', () => {
     button.simulate('click', { preventDefault() {} })
     expect(mockSetCurrentGuess).toBeCalledWith('');
   });
-})
+});
