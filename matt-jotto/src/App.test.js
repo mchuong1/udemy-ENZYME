@@ -1,15 +1,21 @@
-import { shallow, mount } from 'enzyme'
-import { findByTestAttr } from '../test/testutil'
+import { mount } from 'enzyme'
+import { findByTestAttr, storeFactory } from '../test/testutil'
 import App from './App';
+import { getSecretWord as mockGetSecretWord } from './actions';
+import { Provider } from 'react-redux'
 
 //activate global mock to make sure getSecretWord doesn;t make network call
 jest.mock('./actions')
-import { getSecretWord as mockGetSecretWord } from './actions';
 
-const setup = () => {
+const setup = (initialState={}) => {
   // `useEffect` not called on `shallow`, use mount
   // [https://github.com/airbnb/enzyme/issues/2086]
-  return mount(<App />)
+  const store = storeFactory(initialState)
+  return mount(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  )
 }
 
 test('renders without error', () => {

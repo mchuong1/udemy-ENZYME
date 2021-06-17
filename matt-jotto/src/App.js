@@ -20,7 +20,7 @@ function App() {
     <div className="container" data-test="component-app">
       <h1>Jotto</h1>
       <Congrats success={success} />
-      <Input success={success} secretWord={secretWord}/>
+      <Input secretWord={secretWord}/>
       <GuessedWords guessedWords={guessedWord} />
     </div>
   );

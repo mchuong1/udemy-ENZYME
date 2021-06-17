@@ -1,7 +1,8 @@
 import React from 'react'
-import { shallow } from 'enzyme'
-import { findByTestAttr, checkProp } from '../test/testutil'
+import { shallow, mount } from 'enzyme'
+import { findByTestAttr, checkProp, storeFactory } from '../test/testutil'
 import Input from './Input'
+import { Provider } from 'react-redux'
 
 const mockSetCurrentGuess = jest.fn();
 jest.mock('react', () => ({
@@ -11,12 +12,16 @@ jest.mock('react', () => ({
 
 const defaultProps = {
   secretWord: 'party',
-  success: false
 }
 
-const setup = (props={}) => {
+const setup = (initialState={}, props={}) => {
   const setupProps = {...defaultProps, ...props}
-  return shallow(<Input {...setupProps}/>)
+  const store = storeFactory(initialState);
+  return mount(
+    <Provider store={store}>
+      <Input {...setupProps}/>
+    </Provider>
+  )
 }
 
 beforeEach(() => {
