@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import { findByTestAttr, checkProp, storeFactory } from '../test/testutil'
 import Input from './Input'
 import { Provider } from 'react-redux'

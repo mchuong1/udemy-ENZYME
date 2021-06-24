@@ -30,8 +30,6 @@ describe('get secret word', () => {
     mockGetSecretWord.mockClear();
   })
   test('get secret word on app mount', () => {
-    const wrapper = setup();
-
     expect(mockGetSecretWord).toHaveBeenCalledTimes(1);
   });
   test('getSecretWord does not run on app update', () => {
