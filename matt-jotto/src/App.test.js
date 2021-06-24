@@ -24,22 +24,22 @@ test('renders without error', () => {
   expect(appComponent).toHaveLength(1)
 });
 
-describe('get secret word', () => {
-  beforeEach(() => {
-    // clear mock calls
-    mockGetSecretWord.mockClear();
-  })
-  test('get secret word on app mount', () => {
-    expect(mockGetSecretWord).toHaveBeenCalledTimes(1);
-  });
-  test('getSecretWord does not run on app update', () => {
-    const wrapper = setup();
-    mockGetSecretWord.mockClear();
+// describe('get secret word', () => {
+//   beforeEach(() => {
+//     // clear mock calls
+//     mockGetSecretWord.mockClear();
+//   })
+//   // test('get secret word on app mount', () => {
+//   //   expect(mockGetSecretWord).toHaveBeenCalledTimes(1);
+//   // });
+//   // test('getSecretWord does not run on app update', () => {
+//   //   const wrapper = setup();
+//   //   mockGetSecretWord.mockClear();
 
-    // using setProps because wrapper.update() doesn't trigger useEffect
-    // https://hithub.com/enzymejs/enzyme/issues/2254
-    wrapper.setProps();
+//   //   // using setProps because wrapper.update() doesn't trigger useEffect
+//   //   // https://hithub.com/enzymejs/enzyme/issues/2254
+//   //   wrapper.setProps();
 
-    expect(mockGetSecretWord).toHaveBeenCalledTimes(0);
-  });
-})
+//   //   expect(mockGetSecretWord).toHaveBeenCalledTimes(0);
+//   // });
+// })
